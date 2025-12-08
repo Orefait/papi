@@ -1,0 +1,331 @@
+[  {
+    "name": "MY DATA VISION",
+    "description": "Visualisation et gestion de données personnelles",
+    "url": "https://mydatavision.orange.com",
+    "iconURL": "📊"
+  },
+  {
+    "name": "AUTOMATION PORTAL OBS",
+    "description": "Suivi des cas d'automatisation et projets",
+    "url": "https://automation.orange.com/obs",
+    "iconURL": "🤖"
+  },
+  {
+    "name": "EasyMail",
+    "description": "Service de messagerie facile et rapide",
+    "url": "https://mail.easy.orange.com",
+    "iconURL": "✉️"
+  },
+  {
+    "name": "Jobs Opportunities",
+    "description": "Portail de mobilité interne et offres d'emploi",
+    "url": "https://jobs.orange.com",
+    "iconURL": "💼"
+  },
+  {
+    "name": "ASSET USER INTERFACE",
+    "description": "Interface utilisateur pour la gestion des actifs",
+    "url": "https://assets.orange.com/interface",
+    "iconURL": "💻"
+  },
+  {
+    "name": "CARNET DE COMMANDES INTEGRATION",
+    "description": "Gestion intégrée des commandes",
+    "url": "https://commands.orange.com",
+    "iconURL": "📝"
+  },
+  {
+    "name": "MY SKILLS",
+    "description": "Gestion et identification des compétences",
+    "url": "https://myskills.orange.com",
+    "iconURL": "🧠"
+  },
+  {
+    "name": "SMSNET",
+    "description": "Envoi de SMS en masse",
+    "url": "https://smsnet.orange.com",
+    "iconURL": "📱"
+  },
+  {
+    "name": "OPENBAT",
+    "description": "Demande d'habilitation d'accès aux bâtiments",
+    "url": "https://openbat.orange.com",
+    "iconURL": "🏢"
+  },
+  {
+    "name": "SI IMMOBILIER GROUPE",
+    "description": "Gestion immobilière du groupe",
+    "url": "https://immobilier.orange.com",
+    "iconURL": "🏘️"
+  },
+  {
+    "name": "e-facilities",
+    "description": "Services aux occupants et gestion immobilière",
+    "url": "https://efacilities.orange.com",
+    "iconURL": "🔑"
+  },
+  {
+    "name": "Orange Deployment Engine",
+    "description": "Déploiement et gestion des projets ODE",
+    "url": "https://ode.orange.com",
+    "iconURL": "🚀"
+  },
+  {
+    "name": "Orange Agile Directory",
+    "description": "Annuaire collaboratif des employés",
+    "url": "https://agile.orange.com",
+    "iconURL": "📇"
+  },
+  {
+    "name": "PORTAIL UNIQUE CAPACITAIRE",
+    "description": "Portail unique pour la gestion des capacités",
+    "url": "https://capacitaire.orange.com",
+    "iconURL": "🔧"
+  },
+  {
+    "name": "BetterTogether",
+    "description": "Veille collaborative et partage d'idées",
+    "url": "https://bettertogether.orange.com",
+    "iconURL": "🤝"
+  },
+  {
+    "name": "Console IAM",
+    "description": "Gestion des identités et accès IAM",
+    "url": "https://gg-019730b7-2d94-7b9a-bbeb-9d2067c5cb99.authz.apps.orange/gui/fr/",
+    "iconURL": "🔐"
+  },
+  {
+    "name": "Gestion des documents contractuels",
+    "description": "Contrats et documents légaux",
+    "url": "https://contrat.orange.com",
+    "iconURL": "📄"
+  },
+  {
+    "name": "DAONLINE",
+    "description": "Accès à la plateforme DAONLINE",
+    "url": "https://daonline.orange.com",
+    "iconURL": "🌐"
+  },
+  {
+    "name": "DOSSIER SECURITE",
+    "description": "Gestion des dossiers de sécurité",
+    "url": "https://security.orange.com",
+    "iconURL": "🛡️"
+  },
+  {
+    "name": "Easy Access",
+    "description": "Accès simplifié aux services",
+    "url": "https://easyaccess.orange.com",
+    "iconURL": "🔑"
+  },
+  {
+    "name": "EGERIE RISK MANAGER",
+    "description": "Outil de gestion des risques",
+    "url": "https://egerierisk.orange.com",
+    "iconURL": "⚠️"
+  },
+  {
+    "name": "ELIOT",
+    "description": "Déclaration d'avantages reçus ou donnés",
+    "url": "https://eliot.orange.com",
+    "iconURL": "💼"
+  },
+  {
+    "name": "Escalation Matrix",
+    "description": "Gestion des escalades",
+    "url": "https://escalation.orange.com",
+    "iconURL": "🚨"
+  },
+  {
+    "name": "ERP CLOUD OBS",
+    "description": "Gestion cloud ERP",
+    "url": "https://erp.orange.com",
+    "iconURL": "☁️"
+  },
+  {
+    "name": "La boite",
+    "description": "Espace collaboratif interne",
+    "url": "https://laboite.orange.com",
+    "iconURL": "🧰"
+  },
+  {
+    "name": "OrangeCarto",
+    "description": "Cartographie et géolocalisation",
+    "url": "https://orangecarto.orange.com",
+    "iconURL": "🗺️"
+  },
+  {
+    "name": "IAM Datawarehouse",
+    "description": "Gestion des données IAM",
+    "url": "https://iam.orange.com/datawarehouse",
+    "iconURL": "💾"
+  },
+  {
+    "name": "ISCORE GLOBAL SERVICE CAPABILITY TOOL",
+    "description": "Validation des capacités de service",
+    "url": "https://iscore.orange.com",
+    "iconURL": "✅"
+  },
+  {
+    "name": "OVIP",
+    "description": "Gestion des opérations et incidents",
+    "url": "https://ovip.orange.com",
+    "iconURL": "🔧"
+  },
+  {
+    "name": "LEXLINK HORS OBS",
+    "description": "Gestion hors observation",
+    "url": "https://lexlink.orange.com",
+    "iconURL": "🔗"
+  },
+  {
+    "name": "Anoo Services",
+    "description": "Services pour utilisateurs",
+    "url": "https://anoo.orange.com",
+    "iconURL": "🛠️"
+  },
+  {
+    "name": "My Job",
+    "description": "Gestion de tâches et projets",
+    "url": "https://myjob.orange.com",
+    "iconURL": "📋"
+  },
+  {
+    "name": "Demandeur",
+    "description": "Soumission de demandes",
+    "url": "https://demandeur.orange.com",
+    "iconURL": "📝"
+  },
+  {
+    "name": "Information SI, Services et reseaux",
+    "description": "Infos sur SI et réseaux",
+    "url": "https://info.orange.com",
+    "iconURL": "💻"
+  },
+  {
+    "name": "Mon Badge",
+    "description": "Gestion des badges d'accès",
+    "url": "https://monbadge.orange.com",
+    "iconURL": "🎫"
+  },
+  {
+    "name": "MY WAY",
+    "description": "Navigation et parcours utilisateur",
+    "url": "https://myway.orange.com",
+    "iconURL": "🧭"
+  },
+  {
+    "name": "100% pratique",
+    "description": "Plateforme de pratique et formation",
+    "url": "https://100pratique.orange.com",
+    "iconURL": "🎓"
+  },
+  {
+    "name": "CONTROLE ACCES DEMO",
+    "description": "Test de contrôle d'accès",
+    "url": "https://controleorange.com",
+    "iconURL": "🔒"
+  },
+  {
+    "name": "Base de connaissances commerciales et métiers",
+    "description": "Connaissances métier et commerciale",
+    "url": "https://connaissances.orange.com",
+    "iconURL": "📚"
+  },
+  {
+    "name": "NIA VDR PROD",
+    "description": "VDR en production",
+    "url": "https://nia.orange.com",
+    "iconURL": "🌐"
+  },
+  {
+    "name": "OIA",
+    "description": "Informations opérationnelles et alertes",
+    "url": "https://oia.orange.com",
+    "iconURL": "⚠️"
+  },
+  {
+    "name": "Orange Learning",
+    "description": "Plateforme de formation",
+    "url": "https://orangelearning.orange.com",
+    "iconURL": "🎓"
+  },
+  {
+    "name": "Orange Videoconferencing",
+    "description": "Outil de visioconférence",
+    "url": "https://orangevideo.orange.com",
+    "iconURL": "🎥"
+  },
+  {
+    "name": "OTP AUTHENTIFICATION SERVICE",
+    "description": "Authentification sécurisée mobile",
+    "url": "https://otp.orange.com",
+    "iconURL": "🔑"
+  },
+  {
+    "name": "Portail Achats France",
+    "description": "Gestion des achats en France",
+    "url": "https://achats.orange.com",
+    "iconURL": "🛒"
+  },
+  {
+    "name": "BUI QLIKVIEW Portal",
+    "description": "Portail de visualisation QlikView",
+    "url": "https://qlikview.orange.com",
+    "iconURL": "📊"
+  },
+  {
+    "name": "Portail RH",
+    "description": "Accès aux portails RH",
+    "url": "https://rh.orange.com",
+    "iconURL": "👥"
+  },
+  {
+    "name": "L'Arrondi by Orange",
+    "description": "Gestion des arrondis et bonus",
+    "url": "https://larondi.orange.com",
+    "iconURL": "💰"
+  },
+  {
+    "name": "REALISATIONS SI",
+    "description": "Suivi des réalisations SI",
+    "url": "https://realisations.si.orange.com",
+    "iconURL": "📈"
+  },
+  {
+    "name": "Skills Drive Portal",
+    "description": "Gestion des compétences",
+    "url": "https://skillsdrive.orange.com",
+    "iconURL": "🧠"
+  },
+  {
+    "name": "mon espace voyages et frais",
+    "description": "Gestion des voyages et frais",
+    "url": "https://mytravel.orange.com",
+    "iconURL": "✈️"
+  },
+  {
+    "name": "TOUS ENSEMBLE",
+    "description": "Espace collaboratif interne",
+    "url": "https://tousensemble.orange.com",
+    "iconURL": "🤝"
+  },
+  {
+    "name": "TUFIN ORCHESTRATION SUITE",
+    "description": "Gestion des orchestrations",
+    "url": "https://tufin.orange.com",
+    "iconURL": "🔧"
+  },
+  {
+    "name": "CACTUS",
+    "description": "Gestion des équipements",
+    "url": "https://cactus.orange.com",
+    "iconURL": "🖥️"
+  },
+  {
+    "name": "LIVEDOC G2",
+    "description": "Documentation en ligne",
+    "url": "https://livedoc.orange.com",
+    "iconURL": "📄"
+  }
+]

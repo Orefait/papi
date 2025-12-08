@@ -1,2 +1,41 @@
-<head></head>
-<body><h1>Hello papi</h1></body>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Widget Lit - Adaptatif</title>
+    <style>
+        body {
+            height: 100vh; 
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+        /* CONTENEUR PRINCIPAL IMPOSANT LES DIMENSIONS */
+        #main-widget-container {
+            width: 66.67vw; /* Prend deux tiers de la largeur de la fenêtre */
+            height: 70vh; /* Prend 70% de la hauteur de la fenêtre */
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex; /* Flexbox pour que l'enfant (votre widget) prenne toute la place */
+        }
+
+        /* Le widget doit prendre 100% de l'espace de ce conteneur */
+        widget-xp-portal {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-widget-container">
+        <widget-xp-portal></widget-xp-portal>
+    </div>
+    
+    <script type="module" src="http://localhost:8080/xp-portal-module.js"></script>
+</body>
+</html>

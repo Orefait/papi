@@ -1,7 +1,4 @@
-//import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
-
-import { LitElement, html, css } from 'http://localhost:8080/cache/lit-core.min.js';
-
+import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 
 export class WidgetCoucou extends LitElement {
     
@@ -134,7 +131,7 @@ export class WidgetCoucou extends LitElement {
     }
     
     async fetchTiles() {
-        const apiURL = 'http://localhost:8080/api/tiles'; 
+        const apiURL = '/api/tiles'; 
         
         try {
             const response = await fetch(apiURL);

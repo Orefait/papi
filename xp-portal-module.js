@@ -1,11 +1,10 @@
 import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 
 // ==========================================================
-//  Récupération de l'URL de base du composant
+// 🚀 LOGIQUE : Récupération de l'URL de base du composant
 // ==========================================================
 // 1. Récupère l'URL complète de ce fichier de script
 const scriptBaseURL = new URL('./', import.meta.url).origin; 
-
 
 export class WidgetCoucou extends LitElement {
     
@@ -38,6 +37,13 @@ export class WidgetCoucou extends LitElement {
             box-sizing: border-box; 
             --tile-border-color: #e4e4e4ff;
         }
+
+        h3 {
+            color: white; 
+            margin-top: 0; /* Optionnel: Retire la marge supérieure par défaut */
+            margin-bottom: 10px; /* Ajoute un peu d'espace en dessous */
+        }
+
 
         /* 2. CONTENEUR DE LA LISTE (Gère le défilement vertical) */
         .tile-list-container {
@@ -138,7 +144,6 @@ export class WidgetCoucou extends LitElement {
     }
     
     async fetchTiles() {
-        // CORRECTION: Utilisation de l'URL complète basée sur l'emplacement du script
         const apiURL = `${scriptBaseURL}/api/tiles`; 
         
         try {

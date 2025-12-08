@@ -2,7 +2,18 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 8080;
+// ==========================================================
+// 🚀 NOUVELLE GESTION DE L'ENVIRONNEMENT (Local vs. Render)
+// ==========================================================
+
+// 1. DÉFINITION DU PORT : Utilise process.env.PORT pour Render ou 8080 en local.
+const PORT = process.env.PORT || 8080;
+
+// 2. DÉFINITION DE L'HÔTE : Utilise '0.0.0.0' pour écouter toutes les interfaces 
+//    (requis par Render) ou '127.0.0.1' pour forcer le local si besoin.
+//    NOTE: '0.0.0.0' fonctionne généralement bien pour les deux.
+const HOST = process.env.PORT ? '0.0.0.0' : '127.0.0.1'; 
+
 const directory = __dirname;
 // --- NOUVEAUX CHEMINS ---
 const TILES_API_PATH = '/api/tiles';
@@ -73,7 +84,12 @@ const server = http.createServer((req, res) => {
     });
 });
 
-server.listen(PORT, 'localhost', () => {
-    console.log(`✅ Serveur Node.js démarré sur http://localhost:${PORT}`);
-    console.log(`   API Tuiles accessible via http://localhost:${PORT}${TILES_API_PATH}`);
+
+server.listen(PORT, HOST, () => {
+    // Si l'hôte est '0.0.0.0', on affiche 'localhost' pour la clarté en local
+    const displayHost = (HOST === '0.0.0.0' && !process.env.PORT) ? 'localhost' : HOST;
+    
+    console.log(`✅ Serveur Node.js démarré sur http://${displayHost}:${PORT}`);
+    console.log(`   (Hôte d'écoute réel: ${HOST})`);
+    console.log(`   API Tuiles accessible via http://${displayHost}:${PORT}${TILES_API_PATH}`);
 });

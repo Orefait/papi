@@ -1,9 +1,8 @@
 import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 
 // ==========================================================
-// 🚀 LOGIQUE : Récupération de l'URL de base du composant
+// LOGIQUE : Récupération de l'URL de base du composant
 // ==========================================================
-// 1. Récupère l'URL complète de ce fichier de script
 const scriptBaseURL = new URL('./', import.meta.url).origin; 
 
 export class WidgetCoucou extends LitElement {
@@ -11,7 +10,8 @@ export class WidgetCoucou extends LitElement {
     static properties = {
         tiles: { type: Array, state: true }, 
         loading: { type: Boolean, state: true },
-        filterText: { type: String, state: true }
+        filterText: { type: String, state: true },
+        activeTab: { type: String, state: true } 
     };
 
     constructor() {
@@ -19,6 +19,7 @@ export class WidgetCoucou extends LitElement {
         this.tiles = [];
         this.loading = true;
         this.filterText = '';
+        this.activeTab = 'apps'; 
     }
 
     static styles = css`
@@ -31,6 +32,7 @@ export class WidgetCoucou extends LitElement {
             min-height: 200px; 
             font-family: sans-serif;
             background-color: #000000ff;
+            color: #ffffff; /* ➡️ Texte principal en blanc par défaut */
             border: 1px solid #ccc;
             border-radius: 4px;
             padding: 10px;
@@ -38,70 +40,137 @@ export class WidgetCoucou extends LitElement {
             --tile-border-color: #e4e4e4ff;
         }
 
+        /* Styles du titre H3 */
         h3 {
             color: white; 
-            margin-top: 0; /* Optionnel: Retire la marge supérieure par défaut */
-            margin-bottom: 10px; /* Ajoute un peu d'espace en dessous */
+            margin-top: 0; 
+            margin-bottom: 10px; 
         }
 
+        /* ======================================= */
+        /* STYLES DES ONGLETS (TABS)               */
+        /* ======================================= */
+        .tabs {
+            display: flex;
+            margin-bottom: 5px; /* Réduit l'espace pour que le contenu monte */
+            flex-shrink: 0; 
+        }
+        .tab-button {
+            background-color: #1a1a1a; /* Gris foncé pour les onglets inactifs */
+            color: #ddd;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px 5px 0 0;
+            transition: background-color 0.2s, color 0.2s;
+            margin-right: 2px;
+            border: 1px solid #333; /* Bordure discrète */
+        }
+        .tab-button.active {
+            background-color: #333; /* Gris un peu plus clair pour l'onglet actif (mise en évidence) */
+            color: #fff; 
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1; 
+            border-bottom: 1px solid #333; /* Assure que la bordure est solide */
+        }
+        .tab-content {
+            flex-grow: 1; 
+            overflow-y: auto;
+            /* ➡️ FOND DU CONTENU SOMBRE pour l'uniformité */
+            background-color: #1a1a1a; 
+            color: #ffffff; /* Texte du contenu en blanc */
+            padding: 15px;
+            border-radius: 0 5px 5px 5px;
+            min-height: 0; 
+            border: 1px solid #333;
+        }
+        /* ======================================= */
 
+        /* Styles pour l'onglet "Mon Support" */
+        .support-zone {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #555; /* Bordure plus foncée pour le thème sombre */
+            border-radius: 5px;
+            background-color: #2a2a2a; /* Encore plus sombre pour les zones de contenu */
+        }
+        .support-zone h4 {
+            color: #7b9eff; /* Couleur claire pour les sous-titres */
+            margin-top: 0;
+            border-bottom: 1px dashed #555;
+            padding-bottom: 5px;
+        }
+        .contact-link {
+            display: block;
+            margin: 5px 0;
+            color: #90ee90; /* Couleur claire pour les liens */
+            text-decoration: none;
+        }
+        /* Fin Styles Support */
+        
         /* 2. CONTENEUR DE LA LISTE (Gère le défilement vertical) */
         .tile-list-container {
+
             flex-grow: 1; 
             overflow-y: auto; 
             padding-right: 10px; 
-            margin-top: 10px;
+            
         }
 
         /* 3. BARRE DE RECHERCHE */
         .search-box {
             display: flex;
             align-items: center;
-            border: 1px solid #ddd;
+            border: 1px solid #555;
             border-radius: 4px;
             padding: 2px 8px;
-            background: white;
+            background: #333; 
             flex-shrink: 0; 
+            margin-bottom: 10px; 
         }
         .search-box input {
             border: none;
             flex-grow: 1;
             padding: 5px;
             outline: none;
+            background: #333;
+            color: white;
+        }
+
+        .search-box input::placeholder {
+            color: #aaa;
         }
         .search-icon {
             padding-right: 8px;
-            color: #666;
+            color: #aaa; 
         }
 
-        /* 4. MISE EN PAGE DES TUILES (Adaptative avec Flexbox) */
+        /* 4. MISE EN PAGE DES TUILES */
         .tile-list {
             display: flex;
-            flex-wrap: wrap; /* CRITIQUE : Permet le retour à la ligne */
+            flex-wrap: wrap; 
             gap: 10px; 
             padding-top: 5px;
             justify-content: flex-start;
             align-content: flex-start; 
         }
         
-.tile {
-            width: 180px; /* Augmenté de 150px à 180px */
+        .tile {
+            width: 180px; 
             height: auto;
             box-sizing: border-box; 
-            padding: 8px; /* Réduit le padding de 10px à 8px pour gagner de la hauteur */
-            border: 1px solid #e0e0e0;
+            padding: 8px; 
+            border: 1px solid #555;
             border-left: 5px solid var(--tile-border-color);
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.2s;
+            background-color: #2a2a2a; 
         }
 
-        /* NOUVEAUX STYLES : Flexbox pour aligner l'icône et le texte */
-        .tile-content {
-            display: flex;
-            align-items: center;
-            min-height: 30px; /* Réduit la hauteur minimale de 40px à 30px */
-            width: 100%;
+        .tile:hover {
+             background-color: #3a3a3a; 
         }
 
         .tile-icon {
@@ -113,7 +182,7 @@ export class WidgetCoucou extends LitElement {
         }
 
         .default-icon {
-            color: #888; 
+            color: #aaa; 
         }
 
         .tile-text {
@@ -124,27 +193,40 @@ export class WidgetCoucou extends LitElement {
 
         .tile-name {
             font-weight: bold;
-            color: var(--tile-border-color);
+            color: #fff;
             margin-bottom: 2px;
             word-break: break-word; 
             line-height: 1.2;
         }
         .loading {
             font-style: italic;
-            color: gray;
+            color: #aaa;
+        }
+        small {
+            color: #aaa; 
         }
     `;
 
     firstUpdated() {
-        this.fetchTiles();
+        if (this.activeTab === 'apps') {
+            this.fetchTiles();
+        }
     }
 
     handleFilterInput(e) {
         this.filterText = e.target.value; 
     }
     
+    changeTab(tabName) {
+        this.activeTab = tabName;
+        if (tabName === 'apps' && this.tiles.length === 0 && !this.loading) {
+             this.fetchTiles();
+        }
+    }
+
     async fetchTiles() {
         const apiURL = `${scriptBaseURL}/api/tiles`; 
+        this.loading = true; 
         
         try {
             const response = await fetch(apiURL);
@@ -168,7 +250,7 @@ export class WidgetCoucou extends LitElement {
         }
     }
 
-    render() {
+    renderAppsTab() {
         const query = this.filterText.toLowerCase().trim();
         const filteredTiles = this.tiles.filter(tile => {
             if (!query) return true;
@@ -182,8 +264,8 @@ export class WidgetCoucou extends LitElement {
         }
 
         return html`
-            
             <h3>Cherchez et utilisez vos applications (${filteredTiles.length} / ${this.tiles.length})</h3>
+            
             <div class="search-box">
                 <span class="search-icon">🔍</span>
                 <input 
@@ -209,7 +291,7 @@ export class WidgetCoucou extends LitElement {
                                         <div class="tile-icon">
                                             ${tile.iconURL 
                                                 ? html`<span role="img" aria-label="Icône">${tile.iconURL}</span>`
-                                                : html`<span class="default-icon">🗂️</span>` /* Icône neutre */
+                                                : html`<span class="default-icon">🗂️</span>` 
                                             }
                                         </div>
                                         <div class="tile-text">
@@ -221,6 +303,63 @@ export class WidgetCoucou extends LitElement {
                             `)}
                         </div>
                     `
+                }
+            </div>
+        `;
+    }
+
+    renderSupportTab() {
+        return html`
+            <div class="support-zone">
+                <h4>🔑 Mon Authentification</h4>
+                <p>Votre type d'authentification préférée : **SSO/SAML**.</p>
+                <p>
+                    <a href="mailto:support@entreprise.com" class="contact-link">📧 Contacter le support Authentification</a>
+                    <a href="tel:+33123456789" class="contact-link">📞 Appeler le support Authentification (ext. 100)</a>
+                </p>
+            </div>
+
+            <div class="support-zone">
+                <h4>🔗 Mes droits / Encore plus d'applications :-)</h4>
+                <p>Demander un accès ou modifier vos droits existants :</p>
+                <ul>
+                    <li><a href="https://portal.com/request-access" target="_blank" class="contact-link">🚀 Demander une nouvelle application</a></li>
+                    <li><a href="https://portal.com/manage-rights" target="_blank" class="contact-link">🔒 Gérer mes droits sur les applications existantes</a></li>
+                </ul>
+            </div>
+
+            <div class="support-zone">
+                <h4>💡 Mon Soutien / Mon Support Général</h4>
+                <p>Pour l'aide sur le matériel, les logiciels de bureautique, la connexion réseau, etc. :</p>
+                <p>
+                    <a href="mailto:helpdesk@entreprise.com" class="contact-link">📧 Contacter le Soutien Général</a>
+                    <a href="tel:+33123456799" class="contact-link">📞 Appeler le Soutien Technique (ext. 200)</a>
+                </p>
+            </div>
+        `;
+    }
+
+    render() {
+        return html`
+            <div class="tabs">
+                <button 
+                    class="tab-button ${this.activeTab === 'apps' ? 'active' : ''}" 
+                    @click="${() => this.changeTab('apps')}"
+                >
+                    Mes applications
+                </button>
+                <button 
+                    class="tab-button ${this.activeTab === 'support' ? 'active' : ''}" 
+                    @click="${() => this.changeTab('support')}"
+                >
+                    Mon support
+                </button>
+            </div>
+            
+            <div class="tab-content">
+                ${this.activeTab === 'apps' 
+                    ? this.renderAppsTab() 
+                    : this.renderSupportTab()
                 }
             </div>
         `;

@@ -175,7 +175,7 @@ export class WidgetCoucou extends LitElement {
 
         .tile-icon {
             flex-shrink: 0; 
-            width: 30px; 
+            width: 50px; 
             font-size: 1.5em; 
             text-align: center;
             margin-right: 8px;

@@ -11,12 +11,12 @@ const PORT = process.env.PORT || 8080;
 
 // 2. DÉFINITION DE L'HÔTE : Utilise '0.0.0.0' pour écouter toutes les interfaces 
 //    (requis par Render) ou '127.0.0.1' pour forcer le local si besoin.
-//    NOTE: '0.0.0.0' fonctionne généralement bien pour les deux.
 const HOST = process.env.PORT ? '0.0.0.0' : '127.0.0.1'; 
 
 const directory = __dirname;
 // --- NOUVEAUX CHEMINS ---
-const TILES_API_PATH = '/api/tiles';
+const TILES_API_PATH = '/api/tiles'; // Toutes les tuiles
+const MY_TILES_API_PATH = '/api/my-tiles'; // Seulement les tuiles que l'utilisateur a
 const TILES_JSON_FILE = path.join(__dirname, 'tiles.json');
 // -------------------------
 
@@ -26,26 +26,49 @@ const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    // Vérifie si la requête est l'appel à l'API des tuiles
-    if (req.url.split('?')[0] === TILES_API_PATH) {
+    // Fonction pour lire et potentiellement filtrer le fichier JSON
+    const handleTilesRequest = (filterFunction) => {
         fs.readFile(TILES_JSON_FILE, (error, content) => {
             if (error) {
-                // Erreur de lecture du fichier de données
                 res.writeHead(500, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ error: `Fichier de données ${path.basename(TILES_JSON_FILE)} non trouvé ou illisible.` }));
                 return;
             }
-            // Succès: Envoi des données JSON
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(content, 'utf-8');
+            
+            try {
+                let data = JSON.parse(content);
+                // Applique la fonction de filtrage si elle est fournie
+                if (filterFunction) {
+                    data = data.filter(filterFunction);
+                }
+
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(data), 'utf-8');
+            } catch (e) {
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: "Erreur de parsing du fichier JSON." }));
+            }
         });
-        return; // Arrête le traitement pour cette requête
+    };
+
+    const urlPath = req.url.split('?')[0];
+
+    // ➡️ Route pour les 11 applications auxquelles l'utilisateur a accès
+    if (urlPath === MY_TILES_API_PATH) {
+        handleTilesRequest(tile => tile.inMyApplications === true);
+        return; 
+    }
+    
+    // ➡️ Route pour toutes les tuiles
+    if (urlPath === TILES_API_PATH) {
+        handleTilesRequest(null); // Pas de filtre
+        return; 
     }
 
     // 2. LOGIQUE EXISTANTE (Sert les fichiers statiques .js, .html, etc.)
     
     // On enlève les éventuels paramètres de requête
-    let filePath = path.join(directory, req.url.split('?')[0]);
+    let filePath = path.join(directory, urlPath);
     
     if (filePath.endsWith('/')) {
         filePath += 'index.html'; 
@@ -91,5 +114,6 @@ server.listen(PORT, HOST, () => {
     
     console.log(`✅ Serveur Node.js démarré sur http://${displayHost}:${PORT}`);
     console.log(`   (Hôte d'écoute réel: ${HOST})`);
-    console.log(`   API Tuiles accessible via http://${displayHost}:${PORT}${TILES_API_PATH}`);
+    console.log(`   API Mes Applications accessible via http://${displayHost}:${PORT}${MY_TILES_API_PATH}`);
+    console.log(`   API Toutes les Applications accessible via http://${displayHost}:${PORT}${TILES_API_PATH}`);
 });

@@ -1,4 +1,5 @@
-[  {
+[
+  {
     "name": "MY DATA VISION",
     "description": "Visualisation et gestion de données personnelles",
     "url": "https://mydatavision.orange.com",
@@ -14,7 +15,8 @@
     "name": "EasyMail",
     "description": "Service de messagerie facile et rapide",
     "url": "https://mail.easy.orange.com",
-    "iconURL": "✉️"
+    "iconURL": "✉️",
+    "inMyApplications": true 
   },
   {
     "name": "Jobs Opportunities",
@@ -38,7 +40,8 @@
     "name": "MY SKILLS",
     "description": "Gestion et identification des compétences",
     "url": "https://myskills.orange.com",
-    "iconURL": "🧠"
+    "iconURL": "🧠",
+    "inMyApplications": true 
   },
   {
     "name": "SMSNET",
@@ -56,7 +59,8 @@
     "name": "SI IMMOBILIER GROUPE",
     "description": "Gestion immobilière du groupe",
     "url": "https://immobilier.orange.com",
-    "iconURL": "🏘️"
+    "iconURL": "🏘️",
+    "inMyApplications": true 
   },
   {
     "name": "e-facilities",
@@ -68,7 +72,8 @@
     "name": "Orange Deployment Engine",
     "description": "Déploiement et gestion des projets ODE",
     "url": "https://ode.orange.com",
-    "iconURL": "🚀"
+    "iconURL": "🚀",
+    "inMyApplications": true 
   },
   {
     "name": "Orange Agile Directory",
@@ -86,13 +91,15 @@
     "name": "BetterTogether",
     "description": "Veille collaborative et partage d'idées",
     "url": "https://bettertogether.orange.com",
-    "iconURL": "🤝"
+    "iconURL": "🤝",
+    "inMyApplications": true 
   },
   {
     "name": "Console IAM",
     "description": "Gestion des identités et accès IAM",
     "url": "https://gg-019730b7-2d94-7b9a-bbeb-9d2067c5cb99.authz.apps.orange/gui/fr/",
-    "iconURL": "🎮"
+    "iconURL": "🎮",
+    "inMyApplications": true 
   },
   {
     "name": "Gestion des documents contractuels",
@@ -110,7 +117,8 @@
     "name": "DOSSIER SECURITE",
     "description": "Gestion des dossiers de sécurité",
     "url": "https://security.orange.com",
-    "iconURL": "🛡️"
+    "iconURL": "🛡️",
+    "inMyApplications": true 
   },
   {
     "name": "Easy Access",
@@ -122,7 +130,8 @@
     "name": "EGERIE RISK MANAGER",
     "description": "Outil de gestion des risques",
     "url": "https://egerierisk.orange.com",
-    "iconURL": "⚠️"
+    "iconURL": "⚠️",
+    "inMyApplications": true 
   },
   {
     "name": "ELIOT",
@@ -170,7 +179,8 @@
     "name": "OVIP",
     "description": "Gestion des opérations et incidents",
     "url": "https://ovip.orange.com",
-    "iconURL": "🔧"
+    "iconURL": "🔧",
+    "inMyApplications": true 
   },
   {
     "name": "LEXLINK HORS OBS",
@@ -188,7 +198,8 @@
     "name": "My Job",
     "description": "Gestion de tâches et projets",
     "url": "https://myjob.orange.com",
-    "iconURL": "📋"
+    "iconURL": "📋",
+    "inMyApplications": true 
   },
   {
     "name": "Demandeur",
@@ -272,7 +283,8 @@
     "name": "BUI QLIKVIEW Portal",
     "description": "Portail de visualisation QlikView",
     "url": "https://qlikview.orange.com",
-    "iconURL": "📊"
+    "iconURL": "📊",
+    "inMyApplications": true 
   },
   {
     "name": "Portail RH",

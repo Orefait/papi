@@ -11,6 +11,7 @@ export class WidgetCoucou extends LitElement {
         tiles: { type: Array, state: true }, 
         loading: { type: Boolean, state: true },
         filterText: { type: String, state: true },
+        // ➡️ Mise à jour pour le nouvel onglet 'all-apps'
         activeTab: { type: String, state: true } 
     };
 
@@ -111,11 +112,9 @@ export class WidgetCoucou extends LitElement {
         
         /* 2. CONTENEUR DE LA LISTE (Gère le défilement vertical) */
         .tile-list-container {
-
             flex-grow: 1; 
             overflow-y: auto; 
             padding-right: 10px; 
-            
         }
 
         /* 3. BARRE DE RECHERCHE */
@@ -208,7 +207,8 @@ export class WidgetCoucou extends LitElement {
     `;
 
     firstUpdated() {
-        if (this.activeTab === 'apps') {
+        // Le chargement des tuiles est nécessaire pour 'apps' et 'all-apps'
+        if (this.activeTab === 'apps' || this.activeTab === 'all-apps') {
             this.fetchTiles();
         }
     }
@@ -219,7 +219,8 @@ export class WidgetCoucou extends LitElement {
     
     changeTab(tabName) {
         this.activeTab = tabName;
-        if (tabName === 'apps' && this.tiles.length === 0 && !this.loading) {
+        // On s'assure que les tuiles sont chargées si on va dans 'apps' ou 'all-apps'
+        if ((tabName === 'apps' || tabName === 'all-apps') && this.tiles.length === 0 && !this.loading) {
              this.fetchTiles();
         }
     }
@@ -249,39 +250,37 @@ export class WidgetCoucou extends LitElement {
             window.open(url, '_blank'); 
         }
     }
-
-    renderAppsTab() {
-        const query = this.filterText.toLowerCase().trim();
-        const filteredTiles = this.tiles.filter(tile => {
-            if (!query) return true;
-            
-            return tile.name.toLowerCase().includes(query) ||
-                   tile.description.toLowerCase().includes(query);
-        });
-
+    
+    // ➡️ Logique de rendu des tuiles (réutilisée pour les deux onglets d'applications)
+    renderTileList(tilesToRender, showSearch = true) {
         if (this.loading) {
             return html`<div class="loading">Chargement des tuiles...</div>`;
         }
 
         return html`
-            <h3>Cherchez et utilisez vos applications (${filteredTiles.length} / ${this.tiles.length})</h3>
+            <h3>
+                ${showSearch ? 'Cherchez et utilisez vos applications' : 'Catalogue de toutes les applications'} 
+                (${tilesToRender.length} / ${this.tiles.length})
+            </h3>
             
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input 
-                    type="text" 
-                    placeholder="Filtrer par nom ou description..."
-                    .value="${this.filterText}"
-                    @input="${this.handleFilterInput}"
-                >
-            </div>
+            ${showSearch ? html`
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        placeholder="Filtrer par nom ou description..."
+                        .value="${this.filterText}"
+                        @input="${this.handleFilterInput}"
+                    >
+                </div>
+            ` : ''}
 
             <div class="tile-list-container">
-                ${filteredTiles.length === 0
+                ${tilesToRender.length === 0
                     ? html`<div>Aucune application ne correspond à votre recherche.</div>`
                     : html`
                         <div class="tile-list">
-                            ${filteredTiles.map(tile => html`
+                            ${tilesToRender.map(tile => html`
                                 <div 
                                     class="tile" 
                                     @click="${() => this.handleTileClick(tile.url)}" 
@@ -306,6 +305,25 @@ export class WidgetCoucou extends LitElement {
                 }
             </div>
         `;
+    }
+
+    renderAppsTab() {
+        const query = this.filterText.toLowerCase().trim();
+        const filteredTiles = this.tiles.filter(tile => {
+            if (!query) return true;
+            
+            return tile.name.toLowerCase().includes(query) ||
+                   tile.description.toLowerCase().includes(query);
+        });
+
+        // Utilise la nouvelle méthode de rendu, avec la barre de recherche
+        return this.renderTileList(filteredTiles, true);
+    }
+    
+    // ➡️ Nouvel onglet pour toutes les applications (sans filtre)
+    renderAllAppsTab() {
+         // Utilise la nouvelle méthode de rendu, sans la barre de recherche (false)
+        return this.renderTileList(this.tiles, false);
     }
 
     renderSupportTab() {
@@ -349,6 +367,12 @@ export class WidgetCoucou extends LitElement {
                     Mes applications
                 </button>
                 <button 
+                    class="tab-button ${this.activeTab === 'all-apps' ? 'active' : ''}" 
+                    @click="${() => this.changeTab('all-apps')}"
+                >
+                    Toutes les applications
+                </button>
+                <button 
                     class="tab-button ${this.activeTab === 'support' ? 'active' : ''}" 
                     @click="${() => this.changeTab('support')}"
                 >
@@ -359,7 +383,9 @@ export class WidgetCoucou extends LitElement {
             <div class="tab-content">
                 ${this.activeTab === 'apps' 
                     ? this.renderAppsTab() 
-                    : this.renderSupportTab()
+                    : this.activeTab === 'all-apps' // ➡️ Nouvelle condition de rendu
+                        ? this.renderAllAppsTab()
+                        : this.renderSupportTab()
                 }
             </div>
         `;
